@@ -1,8 +1,9 @@
 # RONTEN
 
-日本語 · [English](README.en.md)
+English · [日本語](README.ja.md) 
 
-会議の論点を小窓に表示するシンプルなツール。  
+A simple tool that keeps your meeting’s focus in a floating window.  
 https://ronten.netlify.app/
 
-![RONTENの日本語画面](docs/images/ronten-ja.png)
+![RONTEN in English](docs/images/ronten-en.png)
+

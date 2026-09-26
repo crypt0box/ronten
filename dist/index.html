@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RONTEN</title><meta name="description" content="今、話すことをひとつ。会議の論点を小窓に表示。">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2317191d'/%3E%3Cpath d='M9 14V9h5m4 0h5v5m0 4v5h-5m-4 0H9v-5' fill='none' stroke='white' stroke-width='2'/%3E%3C/svg%3E">
+<style>
+@property --angle { syntax:'<angle>'; initial-value:0deg; inherits:false; }
+:root{font-family:Inter,-apple-system,BlinkMacSystemFont,"Noto Sans JP",sans-serif;color:#1c2025;background:#f6f7f9;font-synthesis:none}*{box-sizing:border-box}body{margin:0}button,textarea{font:inherit}button{cursor:pointer}button:focus-visible,textarea:focus-visible{outline:3px solid #849cf5;outline-offset:4px}header{width:min(760px,calc(100% - 40px));height:100px;margin-inline:auto;display:flex;align-items:center;gap:12px}.mark{width:29px;height:29px}header strong{font-size:19px;letter-spacing:.12em}.language-switch{margin-left:auto;display:flex;gap:2px;padding:3px;border:1px solid #dfe2e7;border-radius:10px;background:#fff}.language-switch button{min-height:32px;padding:5px 10px;border:0;border-radius:7px;background:transparent;color:#737984;font-size:12px}.language-switch button[aria-pressed="true"]{background:#202328;color:#fff}.language-switch button:hover:not([aria-pressed="true"]){background:#f0f1f5}main{width:min(760px,calc(100% - 40px));margin:8vh auto 0;padding-bottom:clamp(56px,8vh,96px)}.eyebrow{font-size:12px;letter-spacing:.16em;color:#858b95;margin:0 0 20px}.topic-card{position:relative;border:1px solid #dfe2e7;border-radius:22px;background:white;padding:40px;min-height:235px;display:flex;flex-direction:column;justify-content:center;isolation:isolate}.topic-card::before{content:"";position:absolute;inset:-3px;border-radius:24px;padding:4px;background:conic-gradient(from var(--angle),#fa5c69,#f9b742,#f5ec62,#64dca1,#54bcfa,#9c7dfa,#f06bb9,#fa5c69);mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude;pointer-events:none;opacity:0}.topic-card.highlight::before{opacity:1;animation:orbit 2.8s linear infinite}.topic-card.highlight{box-shadow:0 8px 35px #8874e51c}@keyframes orbit{to{--angle:360deg}}.card-label{font-size:14px;color:#737984;margin:0 0 17px;display:flex;gap:8px;align-items:center}.card-label svg{width:16px;height:16px}.topic-text{font-size:clamp(24px,3.3vw,34px);font-weight:650;line-height:1.7;letter-spacing:.01em;margin:0;white-space:pre-wrap;overflow-wrap:anywhere}.actions{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:22px}button{display:inline-flex;align-items:center;justify-content:center;gap:9px;border-radius:10px;padding:13px 18px;min-height:47px;border:1px solid #dfe2e7;background:white;color:#343941;font-size:14px;font-weight:550;transition:background .15s}button:hover{background:#f0f1f5}button svg{width:18px;height:18px;flex-shrink:0}.primary{background:#202328;border-color:#202328;color:#fff}.primary:hover{background:#393e47}button[aria-pressed="true"]{background:#eeebff;border-color:#d3caf9;color:#6750ba}button:disabled{opacity:.45;cursor:default}.rainbow-dot{height:16px;width:16px;border-radius:50%;background:conic-gradient(#fa5c69,#f9b742,#64dca1,#54bcfa,#9c7dfa,#fa5c69)}.hint{font-size:13px;line-height:1.8;color:#7b818b;margin:14px 0 0;min-height:24px}.editor{margin-top:44px;border-top:1px solid #e0e3e9;padding-top:28px}.editor-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}label{font-size:14px;font-weight:550}.count{font-size:12px;color:#9197a0}textarea{display:block;width:100%;resize:vertical;min-height:90px;border:1px solid #dfe2e7;border-radius:10px;padding:15px 17px;background:#fff;color:#363c45;line-height:1.7;font-size:16px}footer{width:min(760px,calc(100% - 40px));margin:54px auto 35px;font-size:12px;letter-spacing:.06em;color:#979ca5}.pip-body{background:#f6f7f9;padding:15px;min-width:0}.pip-body .topic-card{padding:22px;min-height:0;border-radius:15px;flex:1}.pip-body .topic-card::before{border-radius:17px}.pip-body .topic-text{font-size:clamp(20px,6vw,32px);line-height:1.6}.pip-body .card-label{font-size:12px;margin-bottom:10px}.pip-body .pip-layout{min-height:calc(100vh - 30px);display:flex;flex-direction:column;gap:14px}.pip-body button{align-self:flex-end;min-height:37px;padding:8px 12px;font-size:13px}.pip-body .rainbow-dot{width:13px;height:13px}@media(max-width:540px){header{height:80px}main{margin-top:5vh}.topic-card{padding:27px;min-height:220px}.actions{align-items:stretch}.actions button{padding:12px;font-size:13px}.editor{margin-top:30px}footer{margin-top:32px}}@media(prefers-reduced-motion:reduce){.topic-card.highlight::before{animation:none}}
+</style>
+</head>
+<body>
+<header><svg class="mark" viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M4 12V4h8m8 0h8v8m0 8v8h-8m-8 0H4v-8" stroke="currentColor" stroke-width="2.3"/></svg><strong>RONTEN</strong><div class="language-switch" role="group" aria-label="表示言語"><button type="button" data-lang="ja" aria-pressed="true">日本語</button><button type="button" data-lang="en" aria-pressed="false">English</button></div></header>
+<main>
+<section class="topic-card" id="card" aria-label="現在の論点"><p class="card-label"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="7" stroke="currentColor"/><circle cx="10" cy="10" r="2" fill="currentColor"/></svg><span class="card-label-text">いま、話すこと</span></p><h1 class="topic-text" id="topic">次のリリースで、何を優先する？</h1></section>
+<div class="actions"><button id="highlight" type="button" aria-pressed="false"><span class="rainbow-dot" aria-hidden="true"></span><span class="button-label">目立たせる</span></button><button class="primary" id="pip" type="button"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.5"/><rect x="11" y="11" width="8" height="6" rx="1" fill="currentColor"/></svg><span id="pip-label">小窓で表示</span></button></div><p class="hint" id="status" role="status" hidden></p>
+<div class="editor"><div class="editor-head"><label for="input">論点を編集</label><span class="count" id="count">0 / 200</span></div><textarea id="input" maxlength="200" rows="2" placeholder="この会議で、何を決める？">次のリリースで、何を優先する？</textarea><p class="hint">入力欄から離れると、表示に反映されます。</p></div>
+</main>
+<script>
+(()=>{'use strict';
+const translations={
+  ja:{description:'今、話すことをひとつ。会議の論点を小窓に表示。',language:'表示言語',current:'現在の論点',cardLabel:'いまの論点',sample:'次のリリースで、何を優先する？',empty:'この会議で、何を決める？',highlight:'目立たせる',unhighlight:'強調をやめる',openPip:'小窓で表示',closePip:'小窓を閉じる',edit:'論点を編集',hint:'入力欄から離れると、表示に反映されます。',unsupported:'小窓表示は対応するデスクトップ版Chromeなどでお試しください。',pipError:'小窓を開けませんでした。Chromeの通常のタブで開き、もう一度お試しください。',invalid:'1〜200文字の論点を入力してください。'},
+  en:{description:'Keep your meeting focused with the current topic in a floating window.',language:'Display language',current:'Current meeting topic',cardLabel:'Current focus',sample:'What should we prioritize for the next release?',empty:'What should we decide in this meeting?',highlight:'Highlight',unhighlight:'Stop highlighting',openPip:'Open floating window',closePip:'Close floating window',edit:'Edit topic',hint:'The displayed topic updates when you leave this field.',unsupported:'The floating window requires a supported desktop browser such as Chrome.',pipError:'Could not open the floating window. Try again in a regular Chrome tab.',invalid:'Enter a topic between 1 and 200 characters.'}
+};
+const input=document.querySelector('#input'),topic=document.querySelector('#topic'),card=document.querySelector('#card'),highlight=document.querySelector('#highlight'),pipButton=document.querySelector('#pip'),pipLabel=document.querySelector('#pip-label'),status=document.querySelector('#status'),languageSwitch=document.querySelector('.language-switch');
+let active=false,pipWindow=null,statusKey=null,userEdited=input.value!==input.defaultValue||input.defaultValue.trim()!==translations.ja.sample;
+let savedLanguage;try{savedLanguage=localStorage.getItem('ronten.language')}catch{}
+const browserLanguage=(navigator.languages||[navigator.language]).map(value=>value?.split('-')[0]).find(value=>value==='ja'||value==='en');
+let language=savedLanguage==='ja'||savedLanguage==='en'?savedLanguage:(browserLanguage||'ja');
+const supported='documentPictureInPicture' in window && window.isSecureContext;
+function setStatus(key){statusKey=key;status.textContent=key?translations[language][key]:'';status.hidden=!key}
+function render(){
+  const t=translations[language],value=input.value.trim()||t.empty;
+  topic.textContent=value;
+  card.classList.toggle('highlight',active);
+  highlight.setAttribute('aria-pressed',String(active));
+  highlight.querySelector('.button-label').textContent=active?t.unhighlight:t.highlight;
+  document.querySelector('#count').textContent=input.value.length+' / 200';
+  if(pipWindow&&!pipWindow.closed){
+    const pipCard=pipWindow.document.querySelector('.topic-card'),button=pipWindow.document.querySelector('.pip-layout > button');
+    pipCard.setAttribute('aria-label',t.current);
+    pipCard.querySelector('.card-label-text').textContent=t.cardLabel;
+    pipCard.querySelector('.topic-text').textContent=value;
+    pipCard.classList.toggle('highlight',active);
+    button.setAttribute('aria-pressed',String(active));
+    button.querySelector('.button-label').textContent=active?t.unhighlight:t.highlight;
+  }
+}
+function setLanguage(next,remember=false){
+  if(!translations[next])return;
+  language=next;
+  const t=translations[language];
+  if(!userEdited)input.value=t.sample;
+  document.documentElement.lang=language;
+  document.querySelector('meta[name="description"]').content=t.description;
+  languageSwitch.setAttribute('aria-label',t.language);
+  languageSwitch.querySelectorAll('button').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.lang===language)));
+  card.setAttribute('aria-label',t.current);
+  card.querySelector('.card-label-text').textContent=t.cardLabel;
+  document.querySelector('label[for="input"]').textContent=t.edit;
+  input.placeholder=t.empty;
+  document.querySelector('.editor .hint').textContent=t.hint;
+  pipLabel.textContent=pipWindow&&!pipWindow.closed?t.closePip:t.openPip;
+  pipButton.title=supported?'':t.unsupported;
+  if(statusKey)setStatus(statusKey);
+  if(pipWindow&&!pipWindow.closed)pipWindow.document.documentElement.lang=language;
+  render();
+  if(remember)try{localStorage.setItem('ronten.language',language)}catch{}
+}
+function toggle(){active=!active;render()}
+languageSwitch.querySelectorAll('button').forEach(button=>button.addEventListener('click',()=>setLanguage(button.dataset.lang,true)));
+input.addEventListener('input',()=>{userEdited=true;document.querySelector('#count').textContent=input.value.length+' / 200'});
+input.addEventListener('blur',render);
+highlight.addEventListener('click',toggle);
+if(!supported){pipButton.disabled=true;setStatus('unsupported')}
+pipButton.addEventListener('click',async()=>{
+  if(pipWindow&&!pipWindow.closed){pipWindow.close();return}
+  pipButton.disabled=true;
+  try{
+    const win=await window.documentPictureInPicture.requestWindow({width:460,height:280});
+    pipWindow=win;
+    win.document.title='RONTEN';
+    win.document.documentElement.lang=language;
+    const style=win.document.createElement('style');style.textContent=document.querySelector('style').textContent;win.document.head.append(style);
+    win.document.body.className='pip-body';
+    const layout=win.document.createElement('div');layout.className='pip-layout';
+    const copy=card.cloneNode(true);copy.removeAttribute('id');copy.querySelector('.topic-text').removeAttribute('id');
+    const button=highlight.cloneNode(true);button.removeAttribute('id');button.addEventListener('click',toggle);
+    layout.append(copy,button);win.document.body.append(layout);
+    win.addEventListener('pagehide',()=>{if(pipWindow===win){pipWindow=null;pipLabel.textContent=translations[language].openPip}});
+    pipLabel.textContent=translations[language].closePip;
+    setStatus(null);
+    render();
+  }catch(error){setStatus('pipError')}
+  finally{pipButton.disabled=!supported}
+});
+const context=document.modelContext;
+if(context?.registerTool){try{Promise.resolve(context.registerTool({name:'set_meeting_topic',title:'Set meeting topic / 論点を変更',description:'Set the meeting topic shown on the page and in the floating window.',inputSchema:{type:'object',properties:{topic:{type:'string',minLength:1,maxLength:200}},required:['topic'],additionalProperties:false},annotations:{readOnlyHint:false},execute(value){if(!value||typeof value.topic!=='string'||!value.topic.trim()||value.topic.length>200)throw new Error(translations[language].invalid);input.value=value.topic;userEdited=true;render();return {topic:input.value}}})).catch(()=>{})}catch{}}
+setLanguage(language);
+})();
+</script>
+</body></html>

@@ -18,6 +18,7 @@
 .confetti-piece{position:absolute;left:50%;top:66%;width:8px;height:13px;border-radius:2px;background:var(--color);animation:confetti-burst 1.55s cubic-bezier(.18,.65,.3,1) both}
 .party-popper{position:absolute;bottom:12%;font-size:clamp(35px,6vw,50px);line-height:1;animation:party-popper .9s ease-out both}
 .party-popper.left{left:9%}.party-popper.right{right:9%;transform:scaleX(-1)}
+.pip-body .attention-effect.confetti{position:fixed;inset:0;overflow:clip;border-radius:0}.confetti-scene{position:absolute;overflow:visible}
 @keyframes camera-flash{0%{opacity:0}8%{opacity:1}22%{opacity:1}100%{opacity:0}}
 @keyframes hand-slam{0%{opacity:0;filter:blur(3px) drop-shadow(0 35px 20px #2227);transform:translate(-50%,-50%) translateZ(320px) scale(1.2)}6%{opacity:1}17%{filter:blur(0) drop-shadow(0 24px 13px #2228);transform:translate(-50%,-50%) translateZ(180px) scale(1.1);animation-timing-function:cubic-bezier(.95,0,1,1)}25%{filter:drop-shadow(0 1px 1px #222b);transform:translate(-50%,-50%) translateZ(0) scale(1.34,.48)}32%{transform:translate(-50%,-50%) translateZ(0) scale(.95,.82)}40%{transform:translate(-50%,-50%) translateZ(0) scale(1)}78%{opacity:1;transform:translate(-50%,-50%) translateZ(0) scale(1)}100%{opacity:0;transform:translate(-50%,-50%) translateZ(0) scale(1)}}
 @keyframes hand-impact{0%{opacity:1;transform:translate(-50%,-50%) scale(.2)}100%{opacity:0;transform:translate(-50%,-50%) scale(3.6)}}
@@ -120,10 +121,16 @@ function playAttention(event){
         setTimeout(()=>{if(item.isConnected)item.animate([{transform:'scale(1)'},{transform:'scale(.985)'},{transform:'scale(1.006)'},{transform:'scale(1)'}],{duration:150,easing:'ease-out'})},170);
       }
       if(kind==='confetti'){
-        appendEffect(effect,'party-popper left','🎉');appendEffect(effect,'party-popper right','🎉');
+        let scene=effect;
+        if(item.ownerDocument!==document){
+          const bounds=item.getBoundingClientRect();
+          scene=appendEffect(effect,'confetti-scene');
+          Object.assign(scene.style,{left:bounds.left+'px',top:bounds.top+'px',width:bounds.width+'px',height:bounds.height+'px'});
+        }
+        appendEffect(scene,'party-popper left','🎉');appendEffect(scene,'party-popper right','🎉');
         const colors=['#fb6b75','#ffc857','#79d8a3','#6bbfff','#aa83f5','#f884ca'];
         for(let i=0;i<34;i++){
-          const piece=appendEffect(effect,'confetti-piece'),dx=(Math.random()-.5)*310,rise=-65-Math.random()*130,spin=(Math.random()-.5)*540;
+          const piece=appendEffect(scene,'confetti-piece'),dx=(Math.random()-.5)*310,rise=-65-Math.random()*130,spin=(Math.random()-.5)*540;
           piece.style.setProperty('--color',colors[i%colors.length]);piece.style.setProperty('--dx',dx+'px');piece.style.setProperty('--endx',dx*1.35+'px');piece.style.setProperty('--rise',rise+'px');piece.style.setProperty('--fall',70+Math.random()*95+'px');piece.style.setProperty('--spin',spin+'deg');piece.style.setProperty('--endspin',spin*2+'deg');
           piece.style.animationDelay=Math.random()*.12+'s';
         }

@@ -5,25 +5,45 @@
 <title>RONTEN</title><meta name="description" content="今、話すことをひとつ。会議の論点を小窓に表示。">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2317191d'/%3E%3Cpath d='M9 14V9h5m4 0h5v5m0 4v5h-5m-4 0H9v-5' fill='none' stroke='white' stroke-width='2'/%3E%3C/svg%3E">
 <style>
-@property --angle { syntax:'<angle>'; initial-value:0deg; inherits:false; }
-:root{font-family:Inter,-apple-system,BlinkMacSystemFont,"Noto Sans JP",sans-serif;color:#1c2025;background:#f6f7f9;font-synthesis:none}*{box-sizing:border-box}body{margin:0}button,textarea{font:inherit}button{cursor:pointer}button:focus-visible,textarea:focus-visible{outline:3px solid #849cf5;outline-offset:4px}header{width:min(760px,calc(100% - 40px));height:100px;margin-inline:auto;display:flex;align-items:center;gap:12px}.mark{width:29px;height:29px}header strong{font-size:19px;letter-spacing:.12em}.language-switch{margin-left:auto;display:flex;gap:2px;padding:3px;border:1px solid #dfe2e7;border-radius:10px;background:#fff}.language-switch button{min-height:32px;padding:5px 10px;border:0;border-radius:7px;background:transparent;color:#737984;font-size:12px}.language-switch button[aria-pressed="true"]{background:#202328;color:#fff}.language-switch button:hover:not([aria-pressed="true"]){background:#f0f1f5}main{width:min(760px,calc(100% - 40px));margin:8vh auto 0;padding-bottom:clamp(56px,8vh,96px)}.eyebrow{font-size:12px;letter-spacing:.16em;color:#858b95;margin:0 0 20px}.topic-card{position:relative;border:1px solid #dfe2e7;border-radius:22px;background:white;padding:40px;min-height:235px;display:flex;flex-direction:column;justify-content:center;isolation:isolate}.topic-card::before{content:"";position:absolute;inset:-3px;border-radius:24px;padding:4px;background:conic-gradient(from var(--angle),#fa5c69,#f9b742,#f5ec62,#64dca1,#54bcfa,#9c7dfa,#f06bb9,#fa5c69);mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude;pointer-events:none;opacity:0}.topic-card.highlight::before{opacity:1;animation:orbit 2.8s linear infinite}.topic-card.highlight{box-shadow:0 8px 35px #8874e51c}@keyframes orbit{to{--angle:360deg}}.card-label{font-size:14px;color:#737984;margin:0 0 17px;display:flex;gap:8px;align-items:center}.card-label svg{width:16px;height:16px}.topic-text{font-size:clamp(24px,3.3vw,34px);font-weight:650;line-height:1.7;letter-spacing:.01em;margin:0;white-space:pre-wrap;overflow-wrap:anywhere}.actions{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:22px}button{display:inline-flex;align-items:center;justify-content:center;gap:9px;border-radius:10px;padding:13px 18px;min-height:47px;border:1px solid #dfe2e7;background:white;color:#343941;font-size:14px;font-weight:550;transition:background .15s}button:hover{background:#f0f1f5}button svg{width:18px;height:18px;flex-shrink:0}.primary{background:#202328;border-color:#202328;color:#fff}.primary:hover{background:#393e47}button[aria-pressed="true"]{background:#eeebff;border-color:#d3caf9;color:#6750ba}button:disabled{opacity:.45;cursor:default}.rainbow-dot{height:16px;width:16px;border-radius:50%;background:conic-gradient(#fa5c69,#f9b742,#64dca1,#54bcfa,#9c7dfa,#fa5c69)}.hint{font-size:13px;line-height:1.8;color:#7b818b;margin:14px 0 0;min-height:24px}.editor{margin-top:44px;border-top:1px solid #e0e3e9;padding-top:28px}.editor-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}label{font-size:14px;font-weight:550}.count{font-size:12px;color:#9197a0}textarea{display:block;width:100%;resize:vertical;min-height:90px;border:1px solid #dfe2e7;border-radius:10px;padding:15px 17px;background:#fff;color:#363c45;line-height:1.7;font-size:16px}footer{width:min(760px,calc(100% - 40px));margin:54px auto 35px;font-size:12px;letter-spacing:.06em;color:#979ca5}.pip-body{background:#f6f7f9;padding:15px;min-width:0}.pip-body .topic-card{padding:22px;min-height:0;border-radius:15px;flex:1}.pip-body .topic-card::before{border-radius:17px}.pip-body .topic-text{font-size:clamp(20px,6vw,32px);line-height:1.6}.pip-body .card-label{font-size:12px;margin-bottom:10px}.pip-body .pip-layout{min-height:calc(100vh - 30px);display:flex;flex-direction:column;gap:14px}.pip-body button{align-self:flex-end;min-height:37px;padding:8px 12px;font-size:13px}.pip-body .rainbow-dot{width:13px;height:13px}@media(max-width:540px){header{height:80px}main{margin-top:5vh}.topic-card{padding:27px;min-height:220px}.actions{align-items:stretch}.actions button{padding:12px;font-size:13px}.editor{margin-top:30px}footer{margin-top:32px}}@media(prefers-reduced-motion:reduce){.topic-card.highlight::before{animation:none}}
+:root{font-family:Inter,-apple-system,BlinkMacSystemFont,"Noto Sans JP",sans-serif;color:#1c2025;background:#f6f7f9;font-synthesis:none}*{box-sizing:border-box}body{margin:0}button,textarea{font:inherit}button{cursor:pointer}button:focus-visible,textarea:focus-visible{outline:3px solid #849cf5;outline-offset:4px}header{width:min(760px,calc(100% - 40px));height:100px;margin-inline:auto;display:flex;align-items:center;gap:12px}.mark{width:29px;height:29px}header strong{font-size:19px;letter-spacing:.12em}.language-switch{margin-left:auto;display:flex;gap:2px;padding:3px;border:1px solid #dfe2e7;border-radius:10px;background:#fff}.language-switch button{min-height:32px;padding:5px 10px;border:0;border-radius:7px;background:transparent;color:#737984;font-size:12px}.language-switch button[aria-pressed="true"]{background:#202328;color:#fff}.language-switch button:hover:not([aria-pressed="true"]){background:#f0f1f5}main{width:min(760px,calc(100% - 40px));margin:8vh auto 0;padding-bottom:clamp(56px,8vh,96px)}.eyebrow{font-size:12px;letter-spacing:.16em;color:#858b95;margin:0 0 20px}.topic-card{position:relative;border:1px solid #dfe2e7;border-radius:22px;background:white;padding:40px;min-height:235px;display:flex;flex-direction:column;justify-content:center;isolation:isolate}.card-label{font-size:14px;color:#737984;margin:0 0 17px;display:flex;gap:8px;align-items:center}.card-label svg{width:16px;height:16px}.topic-text{font-size:clamp(24px,3.3vw,34px);font-weight:650;line-height:1.7;letter-spacing:.01em;margin:0;white-space:pre-wrap;overflow-wrap:anywhere}.actions{display:flex;justify-content:flex-start;align-items:center;flex-wrap:wrap;gap:12px;margin-top:22px}.actions #pip{margin-left:auto}button{display:inline-flex;align-items:center;justify-content:center;gap:9px;border-radius:10px;padding:13px 18px;min-height:47px;border:1px solid #dfe2e7;background:white;color:#343941;font-size:14px;font-weight:550;transition:background .15s}button:hover{background:#f0f1f5}button svg{width:18px;height:18px;flex-shrink:0}.primary{background:#202328;border-color:#202328;color:#fff}.primary:hover{background:#393e47}button:disabled{opacity:.45;cursor:default}.hint{font-size:13px;line-height:1.8;color:#7b818b;margin:14px 0 0;min-height:24px}.editor{margin-top:44px;border-top:1px solid #e0e3e9;padding-top:28px}.editor-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}label{font-size:14px;font-weight:550}.count{font-size:12px;color:#9197a0}textarea{display:block;width:100%;resize:vertical;min-height:90px;border:1px solid #dfe2e7;border-radius:10px;padding:15px 17px;background:#fff;color:#363c45;line-height:1.7;font-size:16px}footer{width:min(760px,calc(100% - 40px));margin:54px auto 35px;font-size:12px;letter-spacing:.06em;color:#979ca5}.pip-body{background:#f6f7f9;padding:15px;min-width:0}.pip-body .topic-card{padding:22px;min-height:0;border-radius:15px;flex:1}.pip-body .topic-text{font-size:clamp(20px,6vw,32px);line-height:1.6}.pip-body .card-label{font-size:12px;margin-bottom:10px}.pip-body .pip-layout{min-height:calc(100vh - 30px);display:flex;flex-direction:column;gap:14px}.pip-body button{align-self:flex-end;min-height:37px;padding:8px 12px;font-size:13px}@media(max-width:540px){header{height:80px}main{margin-top:5vh}.topic-card{padding:27px;min-height:220px}.actions{align-items:stretch}.actions button{padding:12px;font-size:13px}.editor{margin-top:30px}footer{margin-top:32px}}
+
+.attention-button{background:#f5f0ff;border-color:#d9c9ff;color:#5a369c}.attention-button:hover{background:#ece2ff}
+.attention-button svg{width:18px;height:18px}
+.attention-layer{position:absolute;inset:0;overflow:visible;border-radius:inherit;pointer-events:none;z-index:2}
+.attention-effect{position:absolute;inset:0;overflow:hidden;border-radius:inherit}.attention-effect.confetti{overflow:visible}.attention-effect.hand{perspective:560px;perspective-origin:50% 50%}
+.attention-flash{position:absolute;inset:0;background:#fff;opacity:0;animation:camera-flash .72s ease-out both}
+.attention-hand{position:absolute;left:50%;top:50%;font-size:clamp(110px,23vw,180px);line-height:1;transform-origin:center center;animation:hand-slam .68s both}
+.hand-impact{position:absolute;left:50%;top:61%;width:140px;height:42px;border:6px solid #f4b94f;border-radius:50%;box-shadow:0 0 0 4px #fff9,0 0 18px #ffbd38;animation:hand-impact .4s .17s ease-out both}
+.hand-burst{position:absolute;inset:0;background:radial-gradient(circle at 50% 53%,#fff 0%,#ffe4a7a8 22%,transparent 62%);animation:hand-burst .16s .17s ease-out both}
+.confetti-piece{position:absolute;left:50%;top:66%;width:8px;height:13px;border-radius:2px;background:var(--color);animation:confetti-burst 1.55s cubic-bezier(.18,.65,.3,1) both}
+.party-popper{position:absolute;bottom:12%;font-size:clamp(35px,6vw,50px);line-height:1;animation:party-popper .9s ease-out both}
+.party-popper.left{left:9%}.party-popper.right{right:9%;transform:scaleX(-1)}
+@keyframes camera-flash{0%{opacity:0}8%{opacity:1}22%{opacity:1}100%{opacity:0}}
+@keyframes hand-slam{0%{opacity:0;filter:blur(3px) drop-shadow(0 35px 20px #2227);transform:translate(-50%,-50%) translateZ(320px) scale(1.2)}6%{opacity:1}17%{filter:blur(0) drop-shadow(0 24px 13px #2228);transform:translate(-50%,-50%) translateZ(180px) scale(1.1);animation-timing-function:cubic-bezier(.95,0,1,1)}25%{filter:drop-shadow(0 1px 1px #222b);transform:translate(-50%,-50%) translateZ(0) scale(1.34,.48)}32%{transform:translate(-50%,-50%) translateZ(0) scale(.95,.82)}40%{transform:translate(-50%,-50%) translateZ(0) scale(1)}78%{opacity:1;transform:translate(-50%,-50%) translateZ(0) scale(1)}100%{opacity:0;transform:translate(-50%,-50%) translateZ(0) scale(1)}}
+@keyframes hand-impact{0%{opacity:1;transform:translate(-50%,-50%) scale(.2)}100%{opacity:0;transform:translate(-50%,-50%) scale(3.6)}}
+@keyframes hand-burst{0%{opacity:.9}100%{opacity:0}}
+@keyframes confetti-burst{0%{opacity:0;transform:translate(0,0) rotate(0) scale(.3)}18%{opacity:1}48%{opacity:1;transform:translate(var(--dx),var(--rise)) rotate(var(--spin)) scale(1)}88%{opacity:1}100%{opacity:0;transform:translate(var(--endx),var(--fall)) rotate(var(--endspin)) scale(.8)}}
+@keyframes party-popper{0%{opacity:0;scale:.4}28%{opacity:1;scale:1.18}75%{opacity:1;scale:1}100%{opacity:0;scale:.9}}
+.pip-body .pip-controls{display:flex;justify-content:flex-end;flex-wrap:wrap;gap:8px}.pip-body .pip-controls button{align-self:auto}
+@media(max-width:540px){.actions .attention-button,.actions #pip{flex:1 1 auto}.actions #pip{margin-left:0}}
+@media(prefers-reduced-motion:reduce){.attention-flash,.attention-hand,.hand-impact,.hand-burst,.confetti-piece,.party-popper{animation:none;opacity:0}.attention-effect.reduced::after{position:absolute;inset:0;display:grid;place-items:center;font-size:clamp(42px,10vw,72px)}.attention-effect.reduced.flash::after{content:"";background:#fff9}.attention-effect.reduced.hand::after{content:"✋"}.attention-effect.reduced.confetti::after{content:"🎉"}}
 </style>
 </head>
 <body>
 <header><svg class="mark" viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M4 12V4h8m8 0h8v8m0 8v8h-8m-8 0H4v-8" stroke="currentColor" stroke-width="2.3"/></svg><strong>RONTEN</strong><div class="language-switch" role="group" aria-label="表示言語"><button type="button" data-lang="ja" aria-pressed="true">日本語</button><button type="button" data-lang="en" aria-pressed="false">English</button></div></header>
 <main>
-<section class="topic-card" id="card" aria-label="現在の論点"><p class="card-label"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="7" stroke="currentColor"/><circle cx="10" cy="10" r="2" fill="currentColor"/></svg><span class="card-label-text">いま、話すこと</span></p><h1 class="topic-text" id="topic">次のリリースで、何を優先する？</h1></section>
-<div class="actions"><button id="highlight" type="button" aria-pressed="false"><span class="rainbow-dot" aria-hidden="true"></span><span class="button-label">目立たせる</span></button><button class="primary" id="pip" type="button"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.5"/><rect x="11" y="11" width="8" height="6" rx="1" fill="currentColor"/></svg><span id="pip-label">小窓で表示</span></button></div><p class="hint" id="status" role="status" hidden></p>
+<section class="topic-card" id="card" aria-label="現在の論点"><p class="card-label"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="7" stroke="currentColor"/><circle cx="10" cy="10" r="2" fill="currentColor"/></svg><span class="card-label-text">いま、話すこと</span></p><h1 class="topic-text" id="topic">次のリリースで、何を優先する？</h1><div class="attention-layer" aria-hidden="true"></div></section>
+<div class="actions"><button class="attention-button" id="attention" type="button"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m12 2 1.6 6.4L20 10l-6.4 1.6L12 18l-1.6-6.4L4 10l6.4-1.6L12 2Zm7 14 .6 2.4L22 19l-2.4.6L19 22l-.6-2.4L16 19l2.4-.6L19 16Z" fill="currentColor"/></svg><span class="attention-label">注目を集める（音が出ます）</span></button><button class="primary" id="pip" type="button"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.5"/><rect x="11" y="11" width="8" height="6" rx="1" fill="currentColor"/></svg><span id="pip-label">小窓で表示</span></button></div><p class="hint" id="status" role="status" hidden></p>
 <div class="editor"><div class="editor-head"><label for="input">論点を編集</label><span class="count" id="count">0 / 200</span></div><textarea id="input" maxlength="200" rows="2" placeholder="この会議で、何を決める？">次のリリースで、何を優先する？</textarea><p class="hint">入力欄から離れると、表示に反映されます。</p></div>
 </main>
 <script>
 (()=>{'use strict';
 const translations={
-  ja:{description:'今、話すことをひとつ。会議の論点を小窓に表示。',language:'表示言語',current:'現在の論点',cardLabel:'いまの論点',sample:'次のリリースで、何を優先する？',empty:'この会議で、何を決める？',highlight:'目立たせる',unhighlight:'強調をやめる',openPip:'小窓で表示',closePip:'小窓を閉じる',edit:'論点を編集',hint:'入力欄から離れると、表示に反映されます。',unsupported:'小窓表示は対応するデスクトップ版Chromeなどでお試しください。',pipError:'小窓を開けませんでした。Chromeの通常のタブで開き、もう一度お試しください。',invalid:'1〜200文字の論点を入力してください。'},
-  en:{description:'Keep your meeting focused with the current topic in a floating window.',language:'Display language',current:'Current meeting topic',cardLabel:'Current focus',sample:'What should we prioritize for the next release?',empty:'What should we decide in this meeting?',highlight:'Highlight',unhighlight:'Stop highlighting',openPip:'Open floating window',closePip:'Close floating window',edit:'Edit topic',hint:'The displayed topic updates when you leave this field.',unsupported:'The floating window requires a supported desktop browser such as Chrome.',pipError:'Could not open the floating window. Try again in a regular Chrome tab.',invalid:'Enter a topic between 1 and 200 characters.'}
+  ja:{description:'今、話すことをひとつ。会議の論点を小窓に表示。',language:'表示言語',current:'現在の論点',cardLabel:'いまの論点',sample:'次のリリースで、何を優先する？',empty:'この会議で、何を決める？',attention:'注目を集める（音が出ます）',openPip:'小窓で表示',closePip:'小窓を閉じる',edit:'論点を編集',hint:'入力欄から離れると、表示に反映されます。',unsupported:'小窓表示は対応するデスクトップ版Chromeなどでお試しください。',pipError:'小窓を開けませんでした。Chromeの通常のタブで開き、もう一度お試しください。',invalid:'1〜200文字の論点を入力してください。'},
+  en:{description:'Keep your meeting focused with the current topic in a floating window.',language:'Display language',current:'Current meeting topic',cardLabel:'Current focus',sample:'What should we prioritize for the next release?',empty:'What should we decide in this meeting?',attention:'Get attention (plays sound)',openPip:'Open floating window',closePip:'Close floating window',edit:'Edit topic',hint:'The displayed topic updates when you leave this field.',unsupported:'The floating window requires a supported desktop browser such as Chrome.',pipError:'Could not open the floating window. Try again in a regular Chrome tab.',invalid:'Enter a topic between 1 and 200 characters.'}
 };
-const input=document.querySelector('#input'),topic=document.querySelector('#topic'),card=document.querySelector('#card'),highlight=document.querySelector('#highlight'),pipButton=document.querySelector('#pip'),pipLabel=document.querySelector('#pip-label'),status=document.querySelector('#status'),languageSwitch=document.querySelector('.language-switch');
-let active=false,pipWindow=null,statusKey=null,userEdited=input.value!==input.defaultValue||input.defaultValue.trim()!==translations.ja.sample;
+const input=document.querySelector('#input'),topic=document.querySelector('#topic'),card=document.querySelector('#card'),attentionButton=document.querySelector('#attention'),pipButton=document.querySelector('#pip'),pipLabel=document.querySelector('#pip-label'),status=document.querySelector('#status'),languageSwitch=document.querySelector('.language-switch');
+let pipWindow=null,statusKey=null,userEdited=input.value!==input.defaultValue||input.defaultValue.trim()!==translations.ja.sample;
 let savedLanguage;try{savedLanguage=localStorage.getItem('ronten.language')}catch{}
 const browserLanguage=(navigator.languages||[navigator.language]).map(value=>value?.split('-')[0]).find(value=>value==='ja'||value==='en');
 let language=savedLanguage==='ja'||savedLanguage==='en'?savedLanguage:(browserLanguage||'ja');
@@ -32,18 +52,12 @@ function setStatus(key){statusKey=key;status.textContent=key?translations[langua
 function render(){
   const t=translations[language],value=input.value.trim()||t.empty;
   topic.textContent=value;
-  card.classList.toggle('highlight',active);
-  highlight.setAttribute('aria-pressed',String(active));
-  highlight.querySelector('.button-label').textContent=active?t.unhighlight:t.highlight;
   document.querySelector('#count').textContent=input.value.length+' / 200';
   if(pipWindow&&!pipWindow.closed){
-    const pipCard=pipWindow.document.querySelector('.topic-card'),button=pipWindow.document.querySelector('.pip-layout > button');
+    const pipCard=pipWindow.document.querySelector('.topic-card');
     pipCard.setAttribute('aria-label',t.current);
     pipCard.querySelector('.card-label-text').textContent=t.cardLabel;
     pipCard.querySelector('.topic-text').textContent=value;
-    pipCard.classList.toggle('highlight',active);
-    button.setAttribute('aria-pressed',String(active));
-    button.querySelector('.button-label').textContent=active?t.unhighlight:t.highlight;
   }
 }
 function setLanguage(next,remember=false){
@@ -60,18 +74,62 @@ function setLanguage(next,remember=false){
   document.querySelector('label[for="input"]').textContent=t.edit;
   input.placeholder=t.empty;
   document.querySelector('.editor .hint').textContent=t.hint;
+  attentionButton.querySelector('.attention-label').textContent=t.attention;
   pipLabel.textContent=pipWindow&&!pipWindow.closed?t.closePip:t.openPip;
+  if(pipWindow&&!pipWindow.closed)pipWindow.document.querySelector('.pip-attention .attention-label').textContent=t.attention;
   pipButton.title=supported?'':t.unsupported;
   if(statusKey)setStatus(statusKey);
   if(pipWindow&&!pipWindow.closed)pipWindow.document.documentElement.lang=language;
   render();
   if(remember)try{localStorage.setItem('ronten.language',language)}catch{}
 }
-function toggle(){active=!active;render()}
 languageSwitch.querySelectorAll('button').forEach(button=>button.addEventListener('click',()=>setLanguage(button.dataset.lang,true)));
 input.addEventListener('input',()=>{userEdited=true;document.querySelector('#count').textContent=input.value.length+' / 200'});
 input.addEventListener('blur',render);
-highlight.addEventListener('click',toggle);
+
+const reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
+const soundSources={flash:'audio/camera-shutter.mp3',hand:'audio/tsukkomi.mp3',confetti:'audio/cheer-applause.mp3'};
+const playingSounds=new Set();
+function playAttentionSound(kind,sourceWindow){
+  const sound=new sourceWindow.Audio(new URL(soundSources[kind],document.baseURI).href);
+  playingSounds.add(sound);
+  const release=()=>playingSounds.delete(sound);
+  sound.addEventListener('ended',release,{once:true});
+  sound.addEventListener('error',release,{once:true});
+  void sound.play().catch(release);
+}
+function appendEffect(parent,className,text){const element=parent.ownerDocument.createElement('span');element.className=className;if(text)element.textContent=text;parent.append(element);return element}
+function playAttention(event){
+  const effects=['flash','hand','confetti'];
+  const kind=effects[Math.floor(Math.random()*effects.length)];
+  playAttentionSound(kind,event.currentTarget.ownerDocument.defaultView);
+  const cards=[card];if(pipWindow&&!pipWindow.closed)cards.push(pipWindow.document.querySelector('.topic-card'));
+  cards.forEach(item=>{
+    const layer=item.querySelector('.attention-layer');
+    const effect=appendEffect(layer,'attention-effect '+kind+(reducedMotion.matches?' reduced':''));
+    effect.dataset.effect=kind;
+    if(!reducedMotion.matches){
+      if(kind==='flash')appendEffect(effect,'attention-flash');
+      if(kind==='hand'){
+        appendEffect(effect,'hand-burst');
+        appendEffect(effect,'attention-hand','✋');
+        appendEffect(effect,'hand-impact');
+        setTimeout(()=>{if(item.isConnected)item.animate([{transform:'scale(1)'},{transform:'scale(.985)'},{transform:'scale(1.006)'},{transform:'scale(1)'}],{duration:150,easing:'ease-out'})},170);
+      }
+      if(kind==='confetti'){
+        appendEffect(effect,'party-popper left','🎉');appendEffect(effect,'party-popper right','🎉');
+        const colors=['#fb6b75','#ffc857','#79d8a3','#6bbfff','#aa83f5','#f884ca'];
+        for(let i=0;i<34;i++){
+          const piece=appendEffect(effect,'confetti-piece'),dx=(Math.random()-.5)*310,rise=-65-Math.random()*130,spin=(Math.random()-.5)*540;
+          piece.style.setProperty('--color',colors[i%colors.length]);piece.style.setProperty('--dx',dx+'px');piece.style.setProperty('--endx',dx*1.35+'px');piece.style.setProperty('--rise',rise+'px');piece.style.setProperty('--fall',70+Math.random()*95+'px');piece.style.setProperty('--spin',spin+'deg');piece.style.setProperty('--endspin',spin*2+'deg');
+          piece.style.animationDelay=Math.random()*.12+'s';
+        }
+      }
+    }
+    setTimeout(()=>effect.remove(),reducedMotion.matches?650:kind==='flash'?850:kind==='hand'?850:1800);
+  });
+}
+attentionButton.addEventListener('click',playAttention);
 if(!supported){pipButton.disabled=true;setStatus('unsupported')}
 pipButton.addEventListener('click',async()=>{
   if(pipWindow&&!pipWindow.closed){pipWindow.close();return}
@@ -84,9 +142,10 @@ pipButton.addEventListener('click',async()=>{
     const style=win.document.createElement('style');style.textContent=document.querySelector('style').textContent;win.document.head.append(style);
     win.document.body.className='pip-body';
     const layout=win.document.createElement('div');layout.className='pip-layout';
-    const copy=card.cloneNode(true);copy.removeAttribute('id');copy.querySelector('.topic-text').removeAttribute('id');
-    const button=highlight.cloneNode(true);button.removeAttribute('id');button.addEventListener('click',toggle);
-    layout.append(copy,button);win.document.body.append(layout);
+    const copy=card.cloneNode(true);copy.removeAttribute('id');copy.querySelector('.topic-text').removeAttribute('id');copy.querySelector('.attention-layer').replaceChildren();
+    const controls=win.document.createElement('div');controls.className='pip-controls';
+    const attentionCopy=attentionButton.cloneNode(true);attentionCopy.removeAttribute('id');attentionCopy.classList.add('pip-attention');attentionCopy.addEventListener('click',playAttention);
+    controls.append(attentionCopy);layout.append(copy,controls);win.document.body.append(layout);
     win.addEventListener('pagehide',()=>{if(pipWindow===win){pipWindow=null;pipLabel.textContent=translations[language].openPip}});
     pipLabel.textContent=translations[language].closePip;
     setStatus(null);

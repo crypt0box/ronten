@@ -9,6 +9,7 @@
 
 .attention-button{background:#f5f0ff;border-color:#d9c9ff;color:#5a369c}.attention-button:hover{background:#ece2ff}
 .attention-button svg{width:18px;height:18px}
+.volume-control{display:flex;align-items:center;gap:8px;width:max-content;max-width:100%;margin-top:12px;color:#737984}.volume-control .mute-button{width:38px;height:38px;min-height:38px;padding:0;border-radius:8px;flex:none}.volume-control .mute-button svg{width:19px;height:19px}.volume-control .volume-slider{width:110px;height:32px;accent-color:#5a369c;cursor:pointer}.volume-control .volume-slider:focus-visible{outline:3px solid #849cf5;outline-offset:4px}.volume-control .volume-cross{display:none}.volume-control .mute-button[aria-pressed="true"] .volume-waves{display:none}.volume-control .mute-button[aria-pressed="true"] .volume-cross{display:block}.actions .volume-control,.pip-body .volume-control{margin-top:0}.pip-body .volume-slider{width:100px}
 .attention-layer{position:absolute;inset:0;overflow:visible;border-radius:inherit;pointer-events:none;z-index:2}
 .attention-effect{position:absolute;inset:0;overflow:hidden;border-radius:inherit}.attention-effect.confetti{overflow:visible}.attention-effect.hand{perspective:560px;perspective-origin:50% 50%}
 .attention-flash{position:absolute;inset:0;background:#fff;opacity:0;animation:camera-flash .72s ease-out both}
@@ -25,8 +26,9 @@
 @keyframes hand-burst{0%{opacity:.9}100%{opacity:0}}
 @keyframes confetti-burst{0%{opacity:0;transform:translate(0,0) rotate(0) scale(.3)}18%{opacity:1}48%{opacity:1;transform:translate(var(--dx),var(--rise)) rotate(var(--spin)) scale(1)}88%{opacity:1}100%{opacity:0;transform:translate(var(--endx),var(--fall)) rotate(var(--endspin)) scale(.8)}}
 @keyframes party-popper{0%{opacity:0;scale:.4}28%{opacity:1;scale:1.18}75%{opacity:1;scale:1}100%{opacity:0;scale:.9}}
-.pip-body .pip-controls{display:flex;justify-content:flex-end;flex-wrap:wrap;gap:8px}.pip-body .pip-controls button{align-self:auto}
+.pip-body .pip-controls{display:flex;justify-content:flex-start;flex-wrap:wrap;gap:8px}.pip-body .pip-controls button{align-self:auto}
 .footer-description{margin:0 0 12px;color:#737984;letter-spacing:0;line-height:1.6}.footer-meta{display:flex;align-items:center;flex-wrap:wrap;gap:8px}.footer-meta a{color:#626a75;text-decoration:underline;text-underline-offset:3px}.footer-meta a:hover{color:#202328}.footer-meta a:focus-visible{outline:3px solid #849cf5;outline-offset:4px;border-radius:2px}
+@media(max-width:680px){.actions .attention-button{order:1}.actions #pip{order:2}.actions .volume-control{order:3;flex:0 0 100%}}
 @media(max-width:540px){.actions .attention-button,.actions #pip{flex:1 1 auto}.actions #pip{margin-left:0}}
 @media(prefers-reduced-motion:reduce){.attention-flash,.attention-hand,.hand-impact,.hand-burst,.confetti-piece,.party-popper{animation:none;opacity:0}.attention-effect.reduced::after{position:absolute;inset:0;display:grid;place-items:center;font-size:clamp(42px,10vw,72px)}.attention-effect.reduced.flash::after{content:"";background:#fff9}.attention-effect.reduced.hand::after{content:"✋"}.attention-effect.reduced.confetti::after{content:"🎉"}}
 </style>
@@ -35,15 +37,15 @@
 <header><svg class="mark" viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M4 12V4h8m8 0h8v8m0 8v8h-8m-8 0H4v-8" stroke="currentColor" stroke-width="2.3"/></svg><strong>RONTEN</strong><div class="language-switch" role="group" aria-label="表示言語"><button type="button" data-lang="ja" aria-pressed="true">日本語</button><button type="button" data-lang="en" aria-pressed="false">English</button></div></header>
 <main>
 <section class="topic-card" id="card" aria-label="現在の論点"><p class="card-label"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="7" stroke="currentColor"/><circle cx="10" cy="10" r="2" fill="currentColor"/></svg><span class="card-label-text">いま、話すこと</span></p><h1 class="topic-text" id="topic">次のリリースで、何を優先する？</h1><div class="attention-layer" aria-hidden="true"></div></section>
-<div class="actions"><button class="attention-button" id="attention" type="button"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m12 2 1.6 6.4L20 10l-6.4 1.6L12 18l-1.6-6.4L4 10l6.4-1.6L12 2Zm7 14 .6 2.4L22 19l-2.4.6L19 22l-.6-2.4L16 19l2.4-.6L19 16Z" fill="currentColor"/></svg><span class="attention-label">注目を集める（音が出ます）</span></button><button class="primary" id="pip" type="button"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.5"/><rect x="11" y="11" width="8" height="6" rx="1" fill="currentColor"/></svg><span id="pip-label">小窓で表示</span></button></div><p class="hint" id="status" role="status" hidden></p>
+<div class="actions"><button class="attention-button" id="attention" type="button"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m12 2 1.6 6.4L20 10l-6.4 1.6L12 18l-1.6-6.4L4 10l6.4-1.6L12 2Zm7 14 .6 2.4L22 19l-2.4.6L19 22l-.6-2.4L16 19l2.4-.6L19 16Z" fill="currentColor"/></svg><span class="attention-label">注目を集める（音が出ます）</span></button><div class="volume-control" role="group" aria-label="効果音の音量"><button class="mute-button" type="button" aria-label="ミュート" aria-pressed="false" title="ミュート"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M11 5 6.5 9H3v6h3.5l4.5 4V5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path class="volume-waves" d="M15 9a4 4 0 0 1 0 6m2.5-8.5a7.5 7.5 0 0 1 0 11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path class="volume-cross" d="m15 9 6 6m0-6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button><input class="volume-slider" type="range" min="0" max="100" value="25" aria-label="効果音の音量"></div><button class="primary" id="pip" type="button"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.5"/><rect x="11" y="11" width="8" height="6" rx="1" fill="currentColor"/></svg><span id="pip-label">小窓で表示</span></button></div><p class="hint" id="status" role="status" hidden></p>
 <div class="editor"><div class="editor-head"><label for="input">論点を編集</label><span class="count" id="count">0 / 200</span></div><textarea id="input" maxlength="200" rows="2" placeholder="この会議で、何を決める？">次のリリースで、何を優先する？</textarea><p class="hint">入力欄から離れると、表示に反映されます。</p></div>
 </main>
-<footer><p class="footer-description">プライバシー：入力した論点はブラウザ内で処理し、サーバーへ送信・保存しません。表示言語のみブラウザに保存します。</p><div class="footer-meta"><a href="https://github.com/crypt0box/ronten" target="_blank" rel="noopener noreferrer">GitHub</a><span aria-hidden="true">·</span><span>© 2026 · Created by <a href="https://x.com/cryptooooon" target="_blank" rel="noopener noreferrer">cryptobox</a></span></div></footer>
+<footer><p class="footer-description">プライバシー：入力した論点はブラウザ内で処理し、サーバーへ送信・保存しません。表示言語と音量・ミュート設定のみブラウザに保存します。</p><div class="footer-meta"><a href="https://github.com/crypt0box/ronten" target="_blank" rel="noopener noreferrer">GitHub</a><span aria-hidden="true">·</span><span>© 2026 · Created by <a href="https://x.com/cryptooooon" target="_blank" rel="noopener noreferrer">cryptobox</a></span></div></footer>
 <script>
 (()=>{'use strict';
 const translations={
-  ja:{description:'今、話すことをひとつ。会議の論点を小窓に表示。',footerDescription:'プライバシー：入力した論点はブラウザ内で処理し、サーバーへ送信・保存しません。表示言語のみブラウザに保存します。',language:'表示言語',current:'現在の論点',cardLabel:'いまの論点',sample:'次のリリースで、何を優先する？',empty:'この会議で、何を決める？',attention:'注目を集める（音が出ます）',openPip:'小窓で表示',closePip:'小窓を閉じる',edit:'論点を編集',hint:'入力欄から離れると、表示に反映されます。',unsupported:'小窓表示は対応するデスクトップ版Chromeなどでお試しください。',pipError:'小窓を開けませんでした。Chromeの通常のタブで開き、もう一度お試しください。',invalid:'1〜200文字の論点を入力してください。'},
-  en:{description:'Keep your meeting focused with the current topic in a floating window.',footerDescription:'Privacy: Your topic stays in your browser and is not sent to or stored on our server. Only your language choice is saved in your browser.',language:'Display language',current:'Current meeting topic',cardLabel:'Current focus',sample:'What should we prioritize for the next release?',empty:'What should we decide in this meeting?',attention:'Get attention (plays sound)',openPip:'Open floating window',closePip:'Close floating window',edit:'Edit topic',hint:'The displayed topic updates when you leave this field.',unsupported:'The floating window requires a supported desktop browser such as Chrome.',pipError:'Could not open the floating window. Try again in a regular Chrome tab.',invalid:'Enter a topic between 1 and 200 characters.'}
+  ja:{description:'今、話すことをひとつ。会議の論点を小窓に表示。',footerDescription:'プライバシー：入力した論点はブラウザ内で処理し、サーバーへ送信・保存しません。表示言語と音量・ミュート設定のみブラウザに保存します。',language:'表示言語',current:'現在の論点',cardLabel:'いまの論点',sample:'次のリリースで、何を優先する？',empty:'この会議で、何を決める？',attention:'注目を集める（音が出ます）',attentionMuted:'注目を集める（ミュート中）',mute:'ミュート',unmute:'ミュート解除',volume:'効果音の音量',openPip:'小窓で表示',closePip:'小窓を閉じる',edit:'論点を編集',hint:'入力欄から離れると、表示に反映されます。',unsupported:'小窓表示は対応するデスクトップ版Chromeなどでお試しください。',pipError:'小窓を開けませんでした。Chromeの通常のタブで開き、もう一度お試しください。',invalid:'1〜200文字の論点を入力してください。'},
+  en:{description:'Keep your meeting focused with the current topic in a floating window.',footerDescription:'Privacy: Your topic stays in your browser and is not sent to or stored on our server. Only your language and sound settings are saved in your browser.',language:'Display language',current:'Current meeting topic',cardLabel:'Current focus',sample:'What should we prioritize for the next release?',empty:'What should we decide in this meeting?',attention:'Get attention (plays sound)',attentionMuted:'Get attention (muted)',mute:'Mute',unmute:'Unmute',volume:'Sound volume',openPip:'Open floating window',closePip:'Close floating window',edit:'Edit topic',hint:'The displayed topic updates when you leave this field.',unsupported:'The floating window requires a supported desktop browser such as Chrome.',pipError:'Could not open the floating window. Try again in a regular Chrome tab.',invalid:'Enter a topic between 1 and 200 characters.'}
 };
 const input=document.querySelector('#input'),topic=document.querySelector('#topic'),card=document.querySelector('#card'),attentionButton=document.querySelector('#attention'),pipButton=document.querySelector('#pip'),pipLabel=document.querySelector('#pip-label'),status=document.querySelector('#status'),languageSwitch=document.querySelector('.language-switch');
 let pipWindow=null,statusKey=null,userEdited=input.value!==input.defaultValue||input.defaultValue.trim()!==translations.ja.sample;
@@ -78,9 +80,8 @@ function setLanguage(next,remember=false){
   document.querySelector('label[for="input"]').textContent=t.edit;
   input.placeholder=t.empty;
   document.querySelector('.editor .hint').textContent=t.hint;
-  attentionButton.querySelector('.attention-label').textContent=t.attention;
   pipLabel.textContent=pipWindow&&!pipWindow.closed?t.closePip:t.openPip;
-  if(pipWindow&&!pipWindow.closed)pipWindow.document.querySelector('.pip-attention .attention-label').textContent=t.attention;
+  syncSoundControls();
   pipButton.title=supported?'':t.unsupported;
   if(statusKey)setStatus(statusKey);
   if(pipWindow&&!pipWindow.closed)pipWindow.document.documentElement.lang=language;
@@ -94,8 +95,47 @@ input.addEventListener('blur',render);
 const reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
 const soundSources={flash:'audio/camera-shutter.mp3',hand:'audio/tsukkomi.mp3',confetti:'audio/cheer-applause.mp3'};
 const playingSounds=new Set();
+let soundLevel=25,muted=false,lastAudibleLevel=25;
+try{
+  const savedLevel=localStorage.getItem('ronten.volume');
+  if(savedLevel!==null&&/^(?:100|[1-9]?\d)$/.test(savedLevel))soundLevel=Number(savedLevel);
+  muted=localStorage.getItem('ronten.muted')==='true';
+}catch{}
+if(soundLevel>0)lastAudibleLevel=soundLevel;
+function syncSoundControls(){
+  const t=translations[language],silent=muted||soundLevel===0;
+  const documents=[document];if(pipWindow&&!pipWindow.closed)documents.push(pipWindow.document);
+  documents.forEach(doc=>{
+    const control=doc.querySelector('.volume-control'),label=doc.querySelector('.attention-label');
+    if(label)label.textContent=silent?t.attentionMuted:t.attention;
+    if(!control)return;
+    const button=control.querySelector('.mute-button'),slider=control.querySelector('.volume-slider');
+    const action=silent?t.unmute:t.mute;
+    control.setAttribute('aria-label',t.volume);
+    button.setAttribute('aria-label',action);button.title=action;button.setAttribute('aria-pressed',String(silent));
+    slider.setAttribute('aria-label',t.volume);slider.value=String(silent?0:soundLevel);
+  });
+}
+function updateSoundSettings(){
+  playingSounds.forEach(sound=>{sound.volume=soundLevel/100;sound.muted=muted||soundLevel===0});
+  syncSoundControls();
+  try{localStorage.setItem('ronten.volume',String(soundLevel));localStorage.setItem('ronten.muted',String(muted))}catch{}
+}
+function bindSoundControls(control){
+  control.querySelector('.mute-button').addEventListener('click',()=>{
+    if(muted||soundLevel===0){muted=false;if(soundLevel===0)soundLevel=lastAudibleLevel}else muted=true;
+    updateSoundSettings();
+  });
+  control.querySelector('.volume-slider').addEventListener('input',event=>{
+    soundLevel=Number(event.currentTarget.value);muted=false;
+    if(soundLevel>0)lastAudibleLevel=soundLevel;
+    updateSoundSettings();
+  });
+}
+bindSoundControls(document.querySelector('.volume-control'));
 function playAttentionSound(kind,sourceWindow){
   const sound=new sourceWindow.Audio(new URL(soundSources[kind],document.baseURI).href);
+  sound.volume=soundLevel/100;sound.muted=muted||soundLevel===0;
   playingSounds.add(sound);
   const release=()=>playingSounds.delete(sound);
   sound.addEventListener('ended',release,{once:true});
@@ -155,7 +195,9 @@ pipButton.addEventListener('click',async()=>{
     const copy=card.cloneNode(true);copy.removeAttribute('id');copy.querySelector('.topic-text').removeAttribute('id');copy.querySelector('.attention-layer').replaceChildren();
     const controls=win.document.createElement('div');controls.className='pip-controls';
     const attentionCopy=attentionButton.cloneNode(true);attentionCopy.removeAttribute('id');attentionCopy.classList.add('pip-attention');attentionCopy.addEventListener('click',playAttention);
-    controls.append(attentionCopy);layout.append(copy,controls);win.document.body.append(layout);
+    const volumeCopy=document.querySelector('.volume-control').cloneNode(true);
+    controls.append(attentionCopy,volumeCopy);layout.append(copy,controls);win.document.body.append(layout);
+    bindSoundControls(volumeCopy);syncSoundControls();
     win.addEventListener('pagehide',()=>{if(pipWindow===win){pipWindow=null;pipLabel.textContent=translations[language].openPip}});
     pipLabel.textContent=translations[language].closePip;
     setStatus(null);
